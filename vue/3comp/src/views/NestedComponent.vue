@@ -1,0 +1,30 @@
+<template>
+  <!-- <page-title title="마이페이지" subtitle="주문내역"/>  -->
+  <page-title :title="title"/> <!-- v-bind 는 생략-->
+  <blog-post title="타이틀"  
+            :likes="50" 
+            :is-published="false"
+            :comment-ids="[234, 266, 273]"/> 
+<blog-post :title="post.title"
+            :likes="post.likes" 
+            :is-published="post.isShow"
+            :comment-ids="post.commentIds"/>            
+  <!-- <PageTitle/>  대소문자 구분해서 사용가능/구분없이도 사용가능 -->
+</template>
+<script>
+
+  import PageTitle from '@/components/PageTitle.vue';  //컴포넌트 import
+  import BlogPost from '@/components/BlogPost.vue';
+  export default {
+    components : {PageTitle, BlogPost}, // 컴포넌트 등록
+    data(){
+      return {title : '동적페이지이름',
+              post :{
+                isShow : true,
+                likes: 100,
+                title: "vue 블로그",
+                commentIds: "[234, 266, 273]"}
+      }
+    }
+    }
+</script>

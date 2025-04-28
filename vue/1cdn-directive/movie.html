@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {border-collapse: collapse;}
+
+  </style>
+</head>
+<body>
+  <div id="app">  
+  <!-- <input ><button>조회</button> -->
+  <!-- 날자를 입력 받아서 조회 -->
+   <input v-model="targetDt" @keyup.enter="getMovie()">
+   <button @click="getMovie()">조회하기</button>
+  <table border="1" >
+    <th>순위</th>
+    <th>제목</th>
+    <th></th>
+    <th>상영일</th>
+    <tr v-for="movie in movies">
+      <td>{{ movie.rank }}</td>
+      <td>{{ movie.movieNm }}</td>
+      <td>{{ movie.movieCd }}</td>
+      <td>{{ movie.openDt }}</td>
+    </tr>
+  </table>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return{ 
+          targetDt : '20240423' ,
+          movies : [  ]
+         };
+      },
+	    methods : { 
+        getMovie(){
+          fetch('http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=12664b24453335d2c3eca0fdc4b3b013&targetDt='+this.targetDt)
+            .then(response => response.json())
+            .then(response => this.movies = response.boxOfficeResult.dailyBoxOfficeList)
+        }
+       },  
+      mounted(){
+       this.getMovie();
+    }  
+    }).mount("#app");
+  </script>
+</body>
+</html>
