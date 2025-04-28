@@ -12,6 +12,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/nested">컴포넌트 안에 다른 컨포넌트사용</RouterLink>
         <RouterLink to="/parent">자식컴포넌트에서 부모컴포넌트</RouterLink>
         <RouterLink to="/emp">사원관리</RouterLink>
+        <RouterLink to="/todo">todo리스트</RouterLink>
 
       </nav>
     </div>
