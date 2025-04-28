@@ -1,14 +1,18 @@
 <template>
   <!-- <page-title title="마이페이지" subtitle="주문내역"/>  -->
   <page-title :title="title"/> <!-- v-bind 는 생략-->
+  <!-- 정적에서 문자열은 바인딩x -->
   <blog-post title="타이틀"  
             :likes="50" 
             :is-published="false"
             :comment-ids="[234, 266, 273]"/> 
-<blog-post :title="post.title"
-            :likes="post.likes" 
-            :is-published="post.isShow"
-            :comment-ids="post.commentIds"/>            
+  <!-- 동적 -->
+  <blog-post v-bind="post"/> 
+  <!-- <blog-post :title="post.title"
+              :likes="post.likes" 
+              :is-published="post.isShow"
+              :comment-ids="post.commentIds"/> 위처럼 post자체를 바인딩 가능  -->
+
   <!-- <PageTitle/>  대소문자 구분해서 사용가능/구분없이도 사용가능 -->
 </template>
 <script>
@@ -23,7 +27,7 @@
                 isShow : true,
                 likes: 100,
                 title: "vue 블로그",
-                commentIds: "[234, 266, 273]"}
+                commentIds : [10, 11, 13]}
       }
     }
     }

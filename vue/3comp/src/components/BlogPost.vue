@@ -6,7 +6,7 @@
       좋아요 {{ likes }}
       <div v-if="isPublished">출판</div>
       <div v-else>편집중</div>
-      <div v-for="">commentIds</div>
+      <div v-for="comment in commentIds">{{ comment }}</div>
 
     </div> 
   </div>
