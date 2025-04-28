@@ -14,6 +14,13 @@
 <script>
 //props
 export default {
-  props : ['title','likes','isPublished','commentIds']
+  // props : ['title','likes','isPublished','commentIds']
+  props : {
+    title : { type: String, default: "기본타이틀"},
+    likes : { type: Number, 
+              validator: function(value){return value>0 } },
+    isPublished: { type: Boolean, required: true},
+    commentIds : Array
+  }
 }
 </script>

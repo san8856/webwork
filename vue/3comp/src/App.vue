@@ -10,6 +10,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/nested">컴포넌트 안에 다른 컨포넌트사용</RouterLink>
+        <RouterLink to="/parent">자식컴포넌트에서 부모컴포넌트</RouterLink>
       </nav>
     </div>
   </header>
