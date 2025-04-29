@@ -52,21 +52,29 @@ let data = [
 app.get('/emp', (req, res) => {
   res.send(data)
 })
+
 //부서가 10번인 첫번째 사원 return
 app.get('/find', (req, res) => {
-  res.send('home hello!')
-})
+  const result = data.find(emp => emp.department_id == 10 || emp.department_id == "10");
+  if (result){
+    res.send(result);
+  }
+});
+
 //job_id가 'it'인사원만 조회
 app.get('/filter', (req, res) => {
-  res.send('home hello!')
-})
+  const result = data.filter(emp => emp.job_id = 'it');
+  res.send(result);
+});
+
 //first_name 순으로 정렬
 app.get('/sort', (req, res) => {
-  res.send('home hello!')
-})
+  const result = [...data].sort((a,b) => a.first_name.localeCompare(b.first_name));
+  res.send(result);
+});
 
 app.get('/', (req, res) => {
-  res.send('hello hello!')
+  res.send('hello!')
 })
 
 app.listen(port, () => {
