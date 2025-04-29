@@ -5,16 +5,15 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
     <div class="wrapper">
+      <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <!-- <RouterLink to="/nested">컴포넌트 안에 다른 컨포넌트사용</RouterLink> -->
-        <!-- <RouterLink to="/parent">자식컴포넌트에서 부모컴포넌트</RouterLink> -->
-        <RouterLink to="/emp">사원관리</RouterLink>
-        <RouterLink to="/todo">todo리스트</RouterLink>
-        <RouterLink to="/slot">슬롯</RouterLink>
-
+        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/boardList">리스트</RouterLink>
       </nav>
     </div>
   </header>
