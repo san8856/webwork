@@ -38,6 +38,10 @@
                 class="btn btn-xs btn-warning" @click="goToListForm()">
                 목록
               </button>
+              <button
+                class="btn btn-xs btn-danger" @click="deleteBoard(boardInfo.id)">
+                삭제
+              </button>
              
             </td>
           </tr>
@@ -46,7 +50,7 @@
     </div>
     <!-- 댓글 -->
      <div>
-        
+        <!-- <CommentComp :bid="boardInfo.id"/> -->
      </div>
     <div class="row">
 
@@ -55,9 +59,11 @@
 </template>
 <script>
   import axios from 'axios';
+  // import { Comment } from '@/components/CommentComp.vue';
   axios.defaults.baseURL = "http://localhost:3000/board";
 
   export default{
+    // components:{CommentComp}, emit으로 id값을 넘겨줌
     data(){
       return{
         searchNo: "",
@@ -71,7 +77,7 @@
     methods:{
       async getBoardInfo() {
         let board = await axios.get(`http://localhost:3000/board/${this.searchNo}`);
-        this.boardInfo = board.data;
+        this.boardInfo = board.data[0];
       },
       goToUpdateForm(id){
         this.$router.push({ path: "/boardForm", query: { id: id } });
@@ -79,6 +85,17 @@
       goToListForm(){
         this.$router.push({ path: "/boardList" });
       },
+      async deleteBoard(id) {
+        if (!confirm("정말 삭제하시겠습니까?")) return;
+        try {
+          await axios.delete(`http://localhost:3000/board/${id}`);
+          alert("삭제되었습니다.");
+          this.goToListForm();
+        } catch (error) {
+          console.error("삭제 오류:", error);
+          alert("삭제 중 오류가 발생했습니다.");
+        }
+      }
 
     },
 

@@ -14,9 +14,11 @@ const upload = multer({ storage: storage })
 
 //express instance 생성
 const app  = express()
-const port = 80
+const port = 80;
 
 
+
+//body parse
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 
@@ -109,6 +111,7 @@ app.route("/emp")
 
 //router를 이용하여 모듈(파일)을 분리하여 리소스별로 라우트 지정
 app.use( '/product', require('./routes/product'))
+
 
 app.use( '/dept', require('./routes/dept'))
 

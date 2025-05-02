@@ -64,6 +64,7 @@ import boardInfo from './BoardInfo.vue';
         if (id>0){
           const result = await axios.put(`${url}/${id}`, param);
           alert("정상적으로 수정되었습니다.");
+          this.boardInfo.created_date = new Date().toLocaleString("ko-KR");
           this.$router.push({ path: "/boardList" });
         } else {
           //등록
