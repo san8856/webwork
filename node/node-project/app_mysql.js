@@ -30,6 +30,7 @@ app.get("/", (req,res) => {
 // }); //promise 만듦-index.js
 app.use("/board", require("./routes/board"));
 app.use("/customer", require("./routes/customer"));
+app.use("/comment", require("./routes/comment"));
 
 
 app.listen(port, () => {

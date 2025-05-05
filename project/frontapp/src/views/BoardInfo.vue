@@ -50,7 +50,7 @@
     </div>
     <!-- 댓글 -->
      <div>
-        <!-- <CommentComp :bid="boardInfo.id"/> -->
+        <CommentComp :bid="boardInfo.id"/>
      </div>
     <div class="row">
 
@@ -59,11 +59,11 @@
 </template>
 <script>
   import axios from 'axios';
-  // import { Comment } from '@/components/CommentComp.vue';
+  import CommentComp from '@/components/CommentComp.vue';
   axios.defaults.baseURL = "http://localhost:3000/board";
 
   export default{
-    // components:{CommentComp}, emit으로 id값을 넘겨줌
+    components:{CommentComp},
     data(){
       return{
         searchNo: "",

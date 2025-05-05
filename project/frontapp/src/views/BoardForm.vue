@@ -39,9 +39,6 @@ import boardInfo from './BoardInfo.vue';
         boardInfo: {  },
       };
     },
-    computed: {
-
-    },
     created() {
       this.searchNo = this.$route.query.id || "";
       if (this.searchNo > 0) {
