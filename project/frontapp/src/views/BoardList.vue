@@ -17,6 +17,7 @@
           <td>{{ board.writer }}</td>
           <td>{{ board.created_date }}</td>
           <td>{{ board.comment }}</td>
+          <!-- <td>{{ comment.count_comment }}</td> -->
         </tr>
         
             <button
@@ -30,7 +31,6 @@
 </template>
 <script>
   import axios from 'axios';
-  axios.defaults.baseURL="http://localhost:3000/board";
 
   export default{
     data(){
@@ -44,14 +44,24 @@
     },
     methods: {
       async getBoardList() {
-        let result = await axios.get(`http://localhost:3000/board`);
+        let result = await axios.get(`/api/board`);
         this.boardList = result.data;
       },
+      //   async count_comment() {
+      //   const res = await axios.get(`/api/comment/count/${this.bid}`);
+      //   this.commentCount = res.data[0]?.count || 0;
+      // },
+      // async allComments() {
+      //   const res = await axios.get(`/api/comment`);
+      //   console.log("전체 댓글:", res.data);
+      //   // 필요하면 this.comments = res.data; 로 할 수도 있음
+      // },
+      
       goToUpdateForm(id){
         this.$router.push({ path: "/boardForm", query: { id: id } });
       },
       // fetchList(){
-      //   axios.get("http://localhost:3000/board")
+      //   axios.get("/api/board")
       //   .then(response => this.boardList = response.data)
       // },
       goToDetail(id){

@@ -34,55 +34,52 @@
   </div>
   
 </template>
-<script>
+<script setup>
 import axios from 'axios';
+import { ref, watch, onMounted } from 'vue';
 
-export default{
-//프롭스 , 패치
-  props:['bid'],
-  data(){
-    return {
-      comments: [],
-        writer:'',
-        content:''
-    };
-  },  
-  created() {
-    if (this.bid) {
-      this.getComments();
+  const props = defineProps({
+    bid: {
+      type: Number,
+      required: true
     }
-  },
-  watch: {
-   bid(newVal) {
-     if (newVal) this.getComments();
-   }
-  },
+  });
 
-  methods:{
-    async getComments() {
-        const res = await axios.get(`/api/comment/bid/${this.bid}`);
-        this.comments = res.data;
-      },
-    async deleteComment(id){
-      await axios.delete(`/api/comment/${id}`);
-      this.getComments();
-    },
-    async addComment() {
-      if (!this.writer.trim() || !this.content.trim()) return;
+  const comments = ref([]);
+  const writer = ref('');
+  const content = ref('');
 
-      const url = "/api/comment";
-      const param = {
-        writer: this.writer,
-        content: this.content,
-        bid: this.bid
-      };
-
-      const result = await axios.post(url, param);
-      this.writer = '';
-      this.content = '';
-      this.getComments();
-    }
+  const getComments = async() => {
+    const res = await axios.get(`/api/comment/bid/${props.bid}`);
+    comments.value = res.data;
   }
-};
+
+  const deleteComment = async(id) => {
+    await axios.delete(`/api/comment/${id}`);
+    getComments();
+  }
+  const addComment = async() => {
+    if (!this.writer.trim() || !this.content.trim()) return;
+    
+    const param = {
+      writer: writer.value,
+      content: content.value,
+      bid: props.bid
+    };
+    
+    await axios.post(`/api/comment/`, param);
+    writer.value = '';
+    content.value = '';
+    getComments();
+  }
+
+  onMounted(()=>{
+    if(props.bid) getComments();
+  })
+  
+
+  watch(() => props.bid, (newVal) => {
+  if (newVal) getComments();
+  });
   
 </script>

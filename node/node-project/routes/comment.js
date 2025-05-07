@@ -13,8 +13,8 @@ router.post("", async (req, res) => {
   res.send(result);
 });
 
-router.get("/:id", async (req, res) => {
-  const result = await query("comment", "selectByBid", [req.params.id]);
+router.get("/bid/:bid", async (req, res) => {
+  const result = await query("comment", "selectByBid", [req.params.bid]);
   res.send(result);
 });
 

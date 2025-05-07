@@ -10,29 +10,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/boardTable',
-      name: 'boardTable',
-      component: () => import('../views/boardTable.vue'),
-    },
-    {
       path: '/boardList',
       name: 'boardList',
       component: () => import('../views/BoardList.vue'),
     },
     {
-      path: '/boardForm',
-      name: 'boardForm',
-      component: () => import('../views/BoardForm.vue'),
-    },
-    {
       path: '/boardInfo',
       name: 'boardInfo',
       component: () => import('../views/BoardInfo.vue'),
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue'),
     },
     {
       path: '/about',

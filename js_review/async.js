@@ -2,7 +2,7 @@
 axios = require('axios')
 
 // function getBoard() {
-//   axios("http://localhost:3000/board/1")
+//   axios("/api/board/1")
 //   .then( res => console.log("2", res.data.title) )
 // }
 
@@ -11,7 +11,7 @@ axios = require('axios')
 
 //동기
   async function getBoard() {
-    let res = await axios("http://localhost:3000/board/1")
+    let res = await axios("/api/board/1")
     //then 절 필요 x
     console.log("2:", res.data.title);
   }

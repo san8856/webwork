@@ -4,9 +4,6 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    count: {{ $store.state.count }}
-    changeLoginYn: {{ $store.state.loginYn }}
-    changeEmail: {{ $store.state.email }}
     <TheWelcome />
   </main>
 </template>

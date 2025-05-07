@@ -1,21 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/boardList">리스트</RouterLink>
-        <RouterLink to="/login">로그인</RouterLink>
-        <RouterLink to="/boardTable">게시판테이블</RouterLink>
+        <RouterLink to="/boardList">보드리스트</RouterLink>
       </nav>
     </div>
   </header>

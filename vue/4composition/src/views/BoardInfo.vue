@@ -50,54 +50,53 @@
     </div>
     <!-- 댓글 -->
      <div>
-        <CommentComp :bid="boardInfo.id"/>
+      <CommentComp :bid="boardInfo.id" />
      </div>
     <div class="row">
 
     </div>
   </div>
 </template>
-<script>
-  import axios from 'axios';
-  import CommentComp from '@/components/CommentComp.vue';
+<script setup>
+import axios from 'axios';
+import CommentComp from '@/components/CommentComp.vue';
+import { ref, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
-  export default{
-    components:{CommentComp},
-    data(){
-      return{
-        searchNo: "",
-        boardInfo: {},
-      }
-    },
-    created() {
-      this.searchNo = this.$route.query.id;
-      this.getBoardInfo();
-    },
-    methods:{
-      async getBoardInfo() {
-        let board = await axios.get(`/api/board/${this.searchNo}`);
-        this.boardInfo = board.data[0];
-      },
-      goToUpdateForm(id){
-        this.$router.push({ path: "/boardForm", query: { id: id } });
-      },
-      goToListForm(){
-        this.$router.push({ path: "/boardList" });
-      },
-      async deleteBoard(id) {
-        if (!confirm("정말 삭제하시겠습니까?")) return;
-        try {
-          await axios.delete(`/api/board/${id}`);
-          alert("삭제되었습니다.");
-          this.goToListForm();
-        } catch (error) {
-          console.error("삭제 오류:", error);
-          alert("삭제 중 오류가 발생했습니다.");
-        }
-      }
+  const router = useRouter();
+  const route = useRoute();
 
-    },
+  const searchNo = ref('');
+  const boardInfo = ref({});
 
-
+  const getBoardInfo = async() => {
+    const board = await axios.get(`/api/board/${searchNo.value}`);
+    boardInfo.value = board.data[0];
   }
+
+  const goToUpdateForm = (id) => {
+    router.push({ path: "/boardForm", query: { id } });
+  }
+
+  const goToListForm = ()=>{
+    router.push({ path: "/boardList" });
+  }
+
+  const deleteBoard = async(id) => {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
+    try {
+      await axios.delete(`/api/board/${id}`);
+      alert("삭제되었습니다.");
+      goToListForm();
+    } catch (err) {
+      console.error("삭제 오류:", err);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+
+  onMounted(()=>{
+    searchNo.value = route.query.id;
+    getBoardInfo();
+  });
+
 </script>
