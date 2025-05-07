@@ -59,7 +59,7 @@ import { ref, watch, onMounted } from 'vue';
     getComments();
   }
   const addComment = async() => {
-    if (!this.writer.trim() || !this.content.trim()) return;
+    if (!writer.value.trim() || !content.value.trim()) return;
     
     const param = {
       writer: writer.value,
