@@ -2,9 +2,12 @@
   <div class="container">
     <div class="row">
       <table class="table table-bordered">
+        <div class="text-end mt-3">
+          <button class="btn btn-secondary" @click="goList">목록으로</button>
+        </div>
         <tr>
           <th></th>
-          <td><img :src="`/img/${bookInfo.image}`" alt="bookImage" style="max-width: 150px; max-height: 150px;" ></td>
+          <td><img :src="`http://localhost:3000/uploads/${bookInfo.image}`" alt="bookImage" style="max-width: 150px; max-height: 150px;"></td>
           <th>제목</th>
           <td>{{ bookInfo.title }}</td>
           <th>책 소개</th>

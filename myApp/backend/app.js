@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
+const path = require('path');
 
 require("dotenv").config({path:"./mysql/.env"});
 const app = express()
@@ -26,7 +27,7 @@ app.use(cors());
 //body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get("/", (req,res) => {
   res.send("hello");
 })
