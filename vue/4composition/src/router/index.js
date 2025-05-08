@@ -20,6 +20,26 @@ const router = createRouter({
       component: () => import('../views/BoardInfo.vue'),
     },
     {
+      path: '/nested',
+      name: 'nested',
+      component: () => import('../views/NestedComponent.vue'),
+    },
+    {
+      path: '/component',
+      name: 'component',
+      component: () => import('../views/ComponentView.vue'),
+    },
+    {
+      path: '/provideInject',
+      name: 'provideInject',
+      component: () => import('../views/ProvideInject.vue'),
+    },
+    {
+      path: '/watchView',
+      name: 'watchView',
+      component: () => import('../views/watchView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

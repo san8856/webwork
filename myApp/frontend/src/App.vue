@@ -28,19 +28,7 @@ import { RouterLink, RouterView } from 'vue-router'
               <RouterLink class="nav-link" to="/about">About</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/boardList">게시판</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/nested">Nested</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/component">Component</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/provideInject">ProvideInject</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/watchView">watchView</RouterLink>
+              <RouterLink class="nav-link" to="/bookList">bookList</RouterLink>
             </li>
           </ul>
         </div>
