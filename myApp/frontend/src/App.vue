@@ -37,15 +37,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <!-- 메인 콘텐츠 -->
     <main class="flex-grow-1 d-flex justify-content-center align-items-start py-5">
-      <div class="container" style="max-width: 800px;">
+      <div class="container" style="max-width: 80%;">
         <RouterView />
       </div>
     </main>
 
-    <!-- 푸터 -->
-    <footer class="bg-dark text-white text-center py-3">
-      &copy; 2025 MyApp. All rights reserved.
-    </footer>
   </div>
 </template>
 

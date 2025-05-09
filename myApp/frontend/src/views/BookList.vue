@@ -1,5 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" >
+    <h1 style="text-align: center; font-weight: bold;">도서 목록</h1>
+    <div>
+      <button class="btn btn-info" @click="goAddForm(goAddForm)">도서 등록</button>
+    </div>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -17,11 +21,8 @@
           <td><img :src="`http://localhost:3000/uploads/${book.image}`" alt="bookImage" style="max-width: 150px; max-height: 150px;"></td>          <td>{{ book.title }}</td>
           <td>{{ book.writer }}</td>
           <td>{{ book.publisher }}</td>
-          <td>{{ book.price }}</td>
+          <td>{{ book.price }} 원</td>
         </tr>
-        <div>
-          <button class="btn btn-info" @click="goAddForm(goAddForm)">도서 등록</button>
-        </div>
       </tbody>
     </table>
   </div>

@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container" >
+    <h1 style="text-align: center; font-weight: bold;">도서 등록</h1>
     <form @submit.prevent>
       <label for="title">제목</label>
       <input type="text" v-model="bookInfo.title" id="title" />
+      <label for="sub_title">부제</label>
+      <input type="text" v-model="bookInfo.sub_title" id="sub_title" />
       <label for="writer">저자</label>
       <input type="text" v-model="bookInfo.writer" id="writer" />
       <label for="introduction">책 설명</label>
-      <input type="text" v-model="bookInfo.introduction" id="introduction" />
+      <textarea v-model="bookInfo.introduction" id="introduction" rows="5"></textarea>
       <label for="publisher">출판사</label>
       <input type="text" v-model="bookInfo.publisher" id="publisher" />
       <label for="publication_date">출판일</label>
@@ -17,8 +20,8 @@
       <input type="text" v-model="bookInfo.page" id="page" />
       <label for="isbn">ISBN</label>
       <input type="text" v-model="bookInfo.isbn" id="isbn" />
-      <label for="file"></label>
-      <input type="file" @change="setFile" />
+      <label for="file">도서 이미지 등록</label><br>
+      <input type="file" id="file" @change="setFile" />
 
       <button type="button" class="btn btn-info" @click="addBook">등록하기</button>
     </form>
@@ -52,6 +55,7 @@ export default{
     },
     async addBook() {
       try {
+        //첨부파일 업로드
         if (this.file) {
           const formData = new FormData();
           formData.append("file", this.file);
@@ -62,9 +66,12 @@ export default{
 
           this.bookInfo.image = fileUploadRes.data.fileName; 
         }
+
+        //도서등록
         const url = "/api/book";
         let param = {
         title: this.bookInfo.title,
+        sub_title: this.bookInfo.sub_title,
         writer: this.bookInfo.writer,
         introduction: this.bookInfo.introduction,
         publisher: this.bookInfo.publisher,
@@ -85,39 +92,50 @@ export default{
 };
 </script>
 <style scoped>
-/* Style inputs with type="text", select elements and textareas */
-input[type="text"],
-select,
-textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
-}
-
-/* Style the submit button with a specific background color etc */
-button[type="button"] {
-  background-color: #04aa6d;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* When moving the mouse over the submit button, add a darker green color */
-button[type="button"]:hover {
-  background-color: #45a049;
-}
-
-/* Add a background color and some padding around the form */
 .container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+input[type="file"] {
+  padding: 5px;
+}
+
+button.btn {
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
 }
 </style>

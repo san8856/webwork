@@ -3,6 +3,7 @@ const query = require("../mysql");
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const { rejects } = require("assert");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cd) {
@@ -30,6 +31,7 @@ router.get("", async (req, res)=> {
 router.post("", async (req, res)=> {
   const result = await query('book', "insertInfo",[
     req.body.title, 
+    req.body.sub_title,
     req.body.introduction, 
     req.body.isbn, 
     req.body.writer, 
@@ -38,6 +40,7 @@ router.post("", async (req, res)=> {
     req.body.publication_date, 
     req.body.price, 
     req.body.page])
+    console.log(rejects)
   res.send(result);
 });
 
