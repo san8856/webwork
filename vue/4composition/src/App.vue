@@ -42,6 +42,9 @@ import { RouterLink, RouterView } from 'vue-router'
             <li class="nav-item">
               <RouterLink class="nav-link" to="/watchView">watchView</RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/storeView">watchView</RouterLink>
+            </li>
           </ul>
         </div>
       </div>
